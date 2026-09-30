@@ -1,0 +1,13 @@
+# Archivos del sistema
+Thumbs.db
+.DS_Store
+desktop.ini
+
+# Scripts de uso interno
+analyze.ps1
+copy_assets.ps1
+read_docs.ps1
+extracted_docs.txt
+projects_summary.json
+abrir_dashboard.bat
+server.cjs

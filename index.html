@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ecosistema de Automatización & Ahorro Digital | TYM - TAT</title>
+  <meta name="description" content="Dashboard Ejecutivo y Resumen Interactivo de las 11 Aplicaciones y Procesos Automatizados desarrollados para Tiendas y Marcas del Eje (TYM) y TAT Distribuciones.">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- CDNs: Lucide Icons, Chart.js, Canvas Confetti -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.2/dist/confetti.browser.min.js"></script>
+
+  <!-- Custom Styles -->
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- Ambient Light Orbs -->
+  <div class="ambient-background">
+    <div class="ambient-orb orb-1"></div>
+    <div class="ambient-orb orb-2"></div>
+    <div class="ambient-orb orb-3"></div>
+  </div>
+
+  <div class="app-wrapper">
+    
+    <!-- Top Live Ticker Bar -->
+    <div class="live-ticker-bar">
+      <div class="ticker-left">
+        <div class="pulse-dot"></div>
+        <span class="ticker-tag">Operación Activa</span>
+        <span class="ticker-text">11 Soluciones Digitales en Producción · Ahorro Estimado: <strong>+$380M COP/Año</strong></span>
+      </div>
+      <div class="ticker-right">
+        <button class="btn-icon-nav" onclick="toggleTheme()" title="Cambiar Tema Día/Noche">
+          <i data-lucide="sun" id="themeIcon" style="width: 15px; height: 15px;"></i>
+          <span>Tema</span>
+        </button>
+        <a class="btn-icon-nav" href="informe.html" title="Ver Informe Ejecutivo de Automatizaciones">
+          <i data-lucide="table-2" style="width: 15px; height: 15px;"></i>
+          <span>Informe Ejecutivo</span>
+        </a>
+        <button class="btn-icon-nav" onclick="exportExecutiveReport()" title="Imprimir / Exportar a PDF">
+          <i data-lucide="printer" style="width: 15px; height: 15px;"></i>
+          <span>Informe PDF</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Dashboard Header & Hero -->
+    <header class="dashboard-header">
+      <div class="header-main-content">
+        <div class="brand-badge-group">
+          <div class="brand-pill">
+            <i data-lucide="sparkles" style="width: 14px; height: 14px;"></i>
+            <span>Transformación & Eficiencia Operativa</span>
+          </div>
+          <div class="company-logos-row">
+            <img src="assets/logo-tym.png" alt="Logo TYM" class="logo-badge-img" onerror="this.style.display='none'">
+            <img src="assets/logo-tat.jpg" alt="Logo TAT" class="logo-badge-img" onerror="this.style.display='none'">
+          </div>
+        </div>
+
+        <h1 class="main-title">
+          Ecosistema Digital de <br>
+          <span class="title-highlight">Automatización de Procesos</span>
+        </h1>
+        <p class="main-subtitle">
+          Informe ejecutivo y analítico del portafolio de 11 aplicativos a la medida creados para optimizar la logística, contabilidad, gestión de personal, fuerza de ventas y rentabilidad corporativa.
+        </p>
+      </div>
+
+      <div class="header-actions">
+        <button class="btn-primary-hero" onclick="triggerPresentationMode()">
+          <i data-lucide="presentation"></i>
+          <span>Presentar a Dirección</span>
+        </button>
+        <button class="btn-secondary-hero" onclick="document.getElementById('calculatorSection').scrollIntoView({behavior: 'smooth'})">
+          <i data-lucide="calculator"></i>
+          <span>Simulador de Retorno (ROI)</span>
+        </button>
+      </div>
+    </header>
+
+    <!-- Master KPI Counter Cards -->
+    <section class="kpi-grid" id="kpisContainer">
+      <!-- Injected by app.js -->
+    </section>
+
+    <!-- Interactive ROI & Economic Impact Simulator -->
+    <section class="calculator-section" id="calculatorSection">
+      <div class="section-tag">
+        <i data-lucide="calculator" style="width: 13px; height: 13px;"></i>
+        <span>Simulador Financiero en Tiempo Real</span>
+      </div>
+      <h2 class="section-title">Calculadora de Retorno de Inversión (ROI)</h2>
+      <p class="section-desc">
+        Ajusta los parámetros operativos y salariales para proyectar el ahorro total generado por la eliminación de reprocesos, horas extras y mitigación de fugas de inventario y fletes.
+      </p>
+
+      <div class="calc-grid">
+        <div class="calc-controls">
+          <div class="slider-group">
+            <div class="slider-label-row">
+              <span class="slider-name">Costo Promedio Hora / Hombre (con prestaciones):</span>
+              <span class="slider-val" id="rateValDisplay">$18,500 COP</span>
+            </div>
+            <input type="range" id="calcHourlyRate" min="12000" max="35000" step="500" value="18500" class="custom-range">
+          </div>
+
+          <div class="slider-group">
+            <div class="slider-label-row">
+              <span class="slider-name">Factor de Volumen Operativo (Crecimiento de Rutas):</span>
+              <span class="slider-val" id="volumeValDisplay">1.0x</span>
+            </div>
+            <input type="range" id="calcVolume" min="0.8" max="2.5" step="0.1" value="1.0" class="custom-range">
+          </div>
+
+          <div class="slider-group">
+            <div class="slider-label-row">
+              <span class="slider-name">Pérdidas de Activos & Riesgos de Flete Mitigados / Año:</span>
+              <span class="slider-val" id="assetValDisplay">$54M COP</span>
+            </div>
+            <input type="range" id="calcAssetProt" min="20000000" max="120000000" step="5000000" value="54000000" class="custom-range">
+          </div>
+        </div>
+
+        <div class="calc-results-box">
+          <div class="calc-big-stat-title">Valor Económico Anual Generado</div>
+          <div class="calc-big-stat-val" id="calcGrandTotal">$380.0M COP</div>
+          <p style="font-size: 0.82rem; color: var(--text-secondary);">
+            Equivalente al costo anual de <strong>14 empleados a tiempo completo</strong> en tareas operativas y manuales eliminadas.
+          </p>
+
+          <div class="calc-breakdown-row">
+            <div class="calc-mini-stat">
+              <span>Ahorro en Nómina</span>
+              <span id="calcLaborTotal">$321.9M</span>
+            </div>
+            <div class="calc-mini-stat">
+              <span>Horas Liberadas</span>
+              <span id="calcHoursTotal">17,400 hrs</span>
+            </div>
+            <div class="calc-mini-stat">
+              <span>Infraestructura Servidores</span>
+              <span id="calcServerTotal">$24M</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Analytics & Visual Breakdown Charts -->
+    <section class="analytics-grid">
+      <div class="chart-card">
+        <div class="chart-card-header">
+          <h3 class="chart-title">
+            <i data-lucide="pie-chart" style="color: #38bdf8;"></i>
+            Distribución del Ahorro Anual por Departamento
+          </h3>
+          <span style="font-size: 0.78rem; color: var(--text-muted);">Valores en Millones COP</span>
+        </div>
+        <div class="chart-container">
+          <canvas id="chartSavingsByDept"></canvas>
+        </div>
+      </div>
+
+      <div class="chart-card">
+        <div class="chart-card-header">
+          <h3 class="chart-title">
+            <i data-lucide="bar-chart-3" style="color: #10b981;"></i>
+            Horas Hombre Mensuales Ahorradas por Aplicación
+          </h3>
+          <span style="font-size: 0.78rem; color: var(--text-muted);">hrs / mes</span>
+        </div>
+        <div class="chart-container">
+          <canvas id="chartHoursByApp"></canvas>
+        </div>
+      </div>
+    </section>
+
+    <!-- Interactive Showcase Section (11 Projects) -->
+    <section id="showcaseSection">
+      <div class="showcase-toolbar">
+        <div>
+          <div class="section-tag">
+            <i data-lucide="layers" style="width: 13px; height: 13px;"></i>
+            <span>Portafolio de Soluciones Desarrolladas</span>
+          </div>
+          <h2 class="section-title">Detalle de los 11 Aplicativos</h2>
+        </div>
+
+        <div class="search-box">
+          <i data-lucide="search" class="search-icon"></i>
+          <input type="text" id="searchApps" class="search-input" placeholder="Buscar por nombre, tecnología o proceso...">
+        </div>
+      </div>
+
+      <!-- Filter Buttons -->
+      <div class="filter-pills-wrap" id="filterTabs" style="margin-bottom: 2rem;">
+        <!-- Injected by app.js -->
+      </div>
+
+      <!-- Apps Grid -->
+      <div class="apps-grid" id="appsGrid">
+        <!-- Injected by app.js -->
+      </div>
+    </section>
+
+    <!-- Strategic Architecture Pillars -->
+    <section class="ecosystem-section">
+      <div class="section-tag">
+        <i data-lucide="shield-check" style="width: 13px; height: 13px;"></i>
+        <span>Pilares de Ingeniería del Software</span>
+      </div>
+      <h2 class="section-title">¿Por qué este ecosistema es robusto, seguro y económico?</h2>
+      <p class="section-desc">
+        A diferencia de soluciones comerciales costosas que cobran licencias mensuales por usuario ($20-$50 USD/mes por usuario), este ecosistema fue construido a la medida con arquitecturas de última generación:
+      </p>
+
+      <div class="arch-pillars-grid">
+        <div class="arch-pillar-card">
+          <div class="arch-pillar-header">
+            <i data-lucide="database" style="color: #38bdf8;"></i>
+            <span>Serverless & RLS Multi-Tenant</span>
+          </div>
+          <p class="arch-pillar-desc">
+            Seguridad a nivel de fila (Row Level Security) nativa en PostgreSQL. TYM y TAT conviven de forma aislada sin riesgo de filtración de datos ni mantenimiento de servidores dedicados.
+          </p>
+        </div>
+
+        <div class="arch-pillar-card">
+          <div class="arch-pillar-header">
+            <i data-lucide="wifi-off" style="color: #10b981;"></i>
+            <span>PWA & Resiliencia Offline-First</span>
+          </div>
+          <p class="arch-pillar-desc">
+            Asesores en tiendas rurales, auxiliares en muelle y operarios en bodega trabajan sin conexión a internet. Los datos se almacenan en el dispositivo y se sincronizan solos al reconectar.
+          </p>
+        </div>
+
+        <div class="arch-pillar-card">
+          <div class="arch-pillar-header">
+            <i data-lucide="cpu" style="color: #8b5cf6;"></i>
+            <span>Compresión Client-Side & Ahorro de Datos</span>
+          </div>
+          <p class="arch-pillar-desc">
+            Reducción de imágenes de 5MB a 180KB en el navegador antes de enviar. Cero sobrecostos de almacenamiento en la nube y navegación ultra rápida en planes móviles económicos.
+          </p>
+        </div>
+
+        <div class="arch-pillar-card">
+          <div class="arch-pillar-header">
+            <i data-lucide="brain-circuit" style="color: #ec4899;"></i>
+            <span>Big Data ETL & IA Generativa</span>
+          </div>
+          <p class="arch-pillar-desc">
+            Procesamiento de millones de registros de cubos de venta en segundos mediante Python Parquet, y toma de decisiones comerciales asistidas por modelos de lenguaje de Google Gemini.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Executive Pitch Callout -->
+    <div class="pitch-callout">
+      <div class="pitch-text-content">
+        <h3>¿Listo para presentar este balance a la Gerencia?</h3>
+        <p>
+          Este resumen consolida el valor tangible generado para la compañía: procesos 100% trazables, eliminación del papel, cero errores en fletes y bonificaciones, y un retorno de inversión recurrente comprobable.
+        </p>
+      </div>
+      <div class="pitch-actions">
+        <button class="btn-primary-hero" onclick="exportExecutiveReport()">
+          <i data-lucide="file-down"></i>
+          <span>Generar PDF Oficial</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="dashboard-footer">
+      <div>
+        <strong>Ecosistema de Automatización Digital</strong> · Desarrollado para Tiendas y Marcas del Eje Cafetero & TAT Distribuciones
+      </div>
+      <div>
+        11 Aplicaciones Activas · 2026
+      </div>
+    </footer>
+
+  </div>
+
+  <!-- Deep-Dive Modal / Drawer -->
+  <div class="modal-overlay" id="appModal">
+    <div class="modal-content-box" id="modalDynamicContent">
+      <!-- Injected dynamically when clicking an app card -->
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="data.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
