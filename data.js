@@ -7,6 +7,7 @@ const APPS_DATA = [
   {
     id: "fletesapp",
     name: "FletesApp",
+    appUrl: null, // Ej: "https://fletesapp.vercel.app"
     reportData: {
       problema: "Los valores de los fletes podían modificarse manualmente, no existía control estandarizado por población y era difícil justificar adicionales. Las cajeras dependían del área logística para solicitar planillas, generando retrasos y pérdida de información.",
       solucion: "Aplicación parametrizada por población donde los valores quedan restringidos automáticamente y los adicionales requieren justificación. Permite la visualización en tiempo real de planillas despachadas.",
@@ -57,6 +58,7 @@ const APPS_DATA = [
   {
     id: "canastillas",
     name: "Control de Canastas v2.0",
+    appUrl: null, // Ej: "https://canastillas.vercel.app"
     reportData: {
       problema: "Pérdidas masivas de canastillas plásticas y estibas sin trazabilidad por ruta. El registro en planillas físicas se extraviaba en el muelle y se desconocía el inventario real en bodega.",
       solucion: "Sistema de viajes con despacho vs retorno por conductor y auxiliar. Discrimina 4 tipos de envase (Grandes, Medianas, Pequeñas, Estibas), asigna responsabilidad con firma digital y mantiene kardex en tiempo real.",
@@ -105,6 +107,7 @@ const APPS_DATA = [
   {
     id: "devoluciones",
     name: "DevolucionesApp",
+    appUrl: null, // Ej: "https://devoluciones.vercel.app"
     reportData: {
       problema: "Existía poco control sobre devoluciones realizadas por auxiliares y dificultad para analizar motivos faltantes.",
       solucion: "Aplicación con historial, estadísticas automáticas y reportes para toma de decisiones.",
@@ -153,6 +156,7 @@ const APPS_DATA = [
   {
     id: "consignaciones",
     name: "ConsigControl",
+    appUrl: null, // Ej: "https://consigcontrol.vercel.app"
     reportData: {
       problema: "Proceso manual con uso de papel y una persona dedicada exclusivamente a escanear consignaciones.",
       solucion: "Automatización digital del registro y control de consignaciones con panel de auditoría, detección de duplicados y descarga masiva en ZIP.",
@@ -201,6 +205,7 @@ const APPS_DATA = [
   {
     id: "inventapp",
     name: "InventApp",
+    appUrl: null, // Ej: "https://inventapp.vercel.app"
     reportData: {
       problema: "Conteos físicos en hojas impresas con posterior digitación manual. Paradas innecesarias de la operación y discrepancias crónicas entre el sistema y el stock físico real.",
       solucion: "Aplicación offline-first para conteos cíclicos con asignación de tareas por operario, cálculo automático de diferencias y generación de actas en PDF.",
@@ -249,6 +254,7 @@ const APPS_DATA = [
   {
     id: "portal_tributario",
     name: "Portal Tributario",
+    appUrl: null, // Ej: "https://portal-tributario.vercel.app"
     reportData: {
       problema: "El equipo contable recibía más de 600 solicitudes mensuales de certificados de retención por correo y teléfono, con colapso total en meses de vencimientos tributarios.",
       solucion: "Portal de autoservicio 24/7 donde el usuario ingresa su NIT y descarga su certificado en 2 segundos. Genera PDFs oficiales con sello y firma al instante.",
@@ -297,6 +303,7 @@ const APPS_DATA = [
   {
     id: "app_gh",
     name: "GH PRO (App Gh)",
+    appUrl: null, // Ej: "https://gh-pro.vercel.app"
     reportData: {
       problema: "Libros físicos de asistencia con riesgo de suplantación, proceso engorroso en papel para solicitud de vacaciones y falta de control en la entrega de dotación y EPP.",
       solucion: "Control de asistencia por código QR y biometría, portal del trabajador para consultar vacaciones y certificados, y módulo digital de dotación con historial por colaborador.",
@@ -345,6 +352,7 @@ const APPS_DATA = [
   {
     id: "app_indicadores",
     name: "AppIndicadores",
+    appUrl: null, // Ej: "https://appindicadores.vercel.app"
     reportData: {
       problema: "Cálculos manuales de comisiones en hojas de cálculo complejas, reclamos frecuentes por falta de visibilidad y demoras de hasta 8 días para tener cifras definitivas de pago.",
       solucion: "Motor centralizado que cruza ventas, recaudo y logística con fórmulas estandarizadas. Genera actas de liquidación e informes consolidados en Excel al instante.",
@@ -393,6 +401,7 @@ const APPS_DATA = [
   {
     id: "zentra_alpina",
     name: "Zeentra Alpina",
+    appUrl: null, // Ej: "https://zeentra.vercel.app"
     reportData: {
       problema: "Archivos masivos de Excel del cubo de ventas colapsaban los equipos. Toma días identificar caídas de volumen o vendedores con altas devoluciones. Análisis superficial sin cruce de métricas.",
       solucion: "Pipeline ETL en Python convierte millones de filas a Parquet de consulta ultrarrápida. Dashboard interactivo con TanStack Table y asistente IA con Google GenAI para consultas en lenguaje natural.",
@@ -441,6 +450,7 @@ const APPS_DATA = [
   {
     id: "cambios_zenu",
     name: "ZenUp (Cambios Zenú)",
+    appUrl: null, // Ej: "https://zenup.vercel.app"
     reportData: {
       problema: "Toma de pedidos y cambios en talonarios físicos con precios desactualizados. Errores en equivalencias de productos cárnicos y falta de visibilidad del avance de ruta para supervisores.",
       solucion: "Catálogo digital offline-first con precios actualizados automáticamente. Calcula al instante el valor exacto de cambios y muestra en tiempo real el estado de visitas completadas.",
@@ -489,6 +499,7 @@ const APPS_DATA = [
   {
     id: "web_tm_tat",
     name: "WEB-T-M-TAT",
+    appUrl: null, // Ej: "https://tiendasymarcas.com"
     reportData: {
       problema: "Ausencia de portal digital unificado para TYM y TAT. Atención manual por teléfono para preguntas de catálogo e imagen institucional desactualizada frente a competidores regionales.",
       solucion: "Portal corporativo con diseño moderno, catálogo multimarca, asistente IA con Google Gemini para atención automática y canal B2B para captación de nuevos clientes.",

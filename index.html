@@ -168,6 +168,33 @@
       font-size: 12.5px;
     }
 
+    /* ── App link in proceso cell ─────────────── */
+    .app-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      color: #0f2d55;
+      text-decoration: none;
+      font-weight: 700;
+      transition: color 0.18s ease;
+    }
+
+    .app-link:hover {
+      color: #2563eb;
+    }
+
+    .app-link .link-icon {
+      opacity: 0;
+      font-size: 11px;
+      transition: opacity 0.18s ease, transform 0.18s ease;
+      transform: translateX(-4px);
+    }
+
+    .app-link:hover .link-icon {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
     /* ── Process name cell ───────────────────── */
     .proceso-cell {
       font-weight: 700;
@@ -251,6 +278,187 @@
       vertical-align: middle;
     }
 
+    /* ── App Frame Modal ─────────────────────── */
+    .frame-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(8, 12, 30, 0.82);
+      backdrop-filter: blur(6px);
+      z-index: 9999;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      animation: fadeInOverlay 0.2s ease;
+    }
+
+    .frame-overlay.active {
+      display: flex;
+    }
+
+    @keyframes fadeInOverlay {
+      from { opacity: 0; }
+      to   { opacity: 1; }
+    }
+
+    .frame-modal {
+      width: 100%;
+      max-width: 1300px;
+      height: 90vh;
+      background: #0f172a;
+      border-radius: 16px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 32px 80px rgba(0,0,0,0.7), 0 0 0 1px rgba(255,255,255,0.07);
+      animation: slideUpModal 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+
+    @keyframes slideUpModal {
+      from { transform: translateY(40px) scale(0.97); opacity: 0; }
+      to   { transform: translateY(0)    scale(1);    opacity: 1; }
+    }
+
+    /* Topbar estilo navegador */
+    .frame-topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 16px;
+      height: 46px;
+      background: #1e293b;
+      border-bottom: 1px solid rgba(255,255,255,0.07);
+      flex-shrink: 0;
+      gap: 12px;
+    }
+
+    .frame-topbar-left {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .frame-topbar-right {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .frame-dots {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+    }
+    .dot-red    { background: #ff5f57; }
+    .dot-yellow { background: #febc2e; }
+    .dot-green  { background: #28c840; }
+
+    .frame-app-name {
+      font-size: 13px;
+      font-weight: 700;
+      color: #f1f5f9;
+      letter-spacing: 0.01em;
+    }
+
+    .frame-status {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(16, 185, 129, 0.12);
+      border: 1px solid rgba(16, 185, 129, 0.3);
+      border-radius: 20px;
+      padding: 3px 10px;
+      font-size: 11px;
+      font-weight: 700;
+      color: #10b981;
+    }
+
+    .frame-live-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: #10b981;
+      box-shadow: 0 0 6px #10b981;
+      animation: pulse-dot 1.6s ease-in-out infinite;
+    }
+
+    @keyframes pulse-dot {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50%       { opacity: 0.5; transform: scale(0.8); }
+    }
+
+    .frame-close-btn {
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.1);
+      color: #94a3b8;
+      width: 28px;
+      height: 28px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 13px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.15s, color 0.15s;
+      line-height: 1;
+    }
+
+    .frame-close-btn:hover {
+      background: #ef4444;
+      color: #fff;
+      border-color: #ef4444;
+    }
+
+    /* Body con iframe */
+    .frame-body {
+      flex: 1;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .app-iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+      display: block;
+      background: #fff;
+    }
+
+    /* Loader spinner */
+    .frame-loader {
+      position: absolute;
+      inset: 0;
+      background: #0f172a;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+      color: #64748b;
+      font-size: 13px;
+      font-weight: 600;
+      z-index: 2;
+    }
+
+    .loader-spinner {
+      width: 36px;
+      height: 36px;
+      border: 3px solid rgba(56, 189, 248, 0.15);
+      border-top-color: #38bdf8;
+      border-radius: 50%;
+      animation: spin 0.7s linear infinite;
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
     /* ── Print ───────────────────────────────── */
     @media print {
       body { background: #fff; padding: 8px; }
@@ -309,7 +517,7 @@
     <table>
       <thead>
         <tr>
-          <th><span class="col-icon">⚙️</span>Proceso</th>
+          <th><span class="col-icon">🚀</span>Desarrollo</th>
           <th><span class="col-icon">⚠️</span>Problemática Anterior</th>
           <th><span class="col-icon">✅</span>Solución Implementada</th>
           <th><span class="col-icon">📈</span>Impacto Operativo</th>
@@ -319,7 +527,7 @@
       <tbody>
 
         <tr>
-          <td class="proceso-cell">Sistema de Control de Fletes</td>
+          <td class="proceso-cell"><a class="app-link" href="#" data-app="fletesapp" data-url="https://fletes.tiendasymarcaseje.com/" onclick="openAppFrame(event, 'FletesApp', 'https://fletes.tiendasymarcaseje.com/')">FletesApp <span class="link-icon">↗</span></a></td>
           <td class="problema-cell">Valores modificables manualmente, sin control por población. Cajeras dependían de logística para solicitar planillas.</td>
           <td class="solucion-cell">Tarifas restringidas por población, adicionales con justificación obligatoria y planillas en tiempo real.</td>
           <td class="impacto-cell">Control financiero, trazabilidad y flujo de información inmediato entre áreas.</td>
@@ -331,7 +539,7 @@
         </tr>
 
         <tr>
-          <td class="proceso-cell">Sistema de Control de Devoluciones</td>
+          <td class="proceso-cell"><a class="app-link" href="#" data-app="devoluciones" data-url="https://devoluciones.tiendasymarcaseje.com/" onclick="openAppFrame(event, 'DevolucionesApp', 'https://devoluciones.tiendasymarcaseje.com/')">DevolucionesApp <span class="link-icon">↗</span></a></td>
           <td class="problema-cell">Poco control sobre devoluciones de auxiliares y dificultad para analizar motivos.</td>
           <td class="solucion-cell">App con historial, estadísticas automáticas y reportes para toma de decisiones.</td>
           <td class="impacto-cell">Identificación de patrones de devolución y mejor control operativo.</td>
@@ -342,7 +550,7 @@
         </tr>
 
         <tr>
-          <td class="proceso-cell">Sistema de Consignaciones</td>
+          <td class="proceso-cell"><a class="app-link" href="#" data-app="consignaciones" data-url="https://consigcontrol.tiendasymarcaseje.com/" onclick="openAppFrame(event, 'ConsigControl', 'https://consigcontrol.tiendasymarcaseje.com/')">ConsigControl <span class="link-icon">↗</span></a></td>
           <td class="problema-cell">Proceso en papel con una persona dedicada exclusivamente a escanear consignaciones.</td>
           <td class="solucion-cell">Registro digital con detección de duplicados y descarga masiva de comprobantes.</td>
           <td class="impacto-cell">Eliminación del proceso manual, reducción de papel y validación inmediata.</td>
@@ -353,7 +561,7 @@
         </tr>
 
         <tr>
-          <td class="proceso-cell">Control de Canastas</td>
+          <td class="proceso-cell"><a class="app-link" href="#" data-app="canastillas" data-url="https://canastappalpina.vercel.app/" onclick="openAppFrame(event, 'Control de Canastas', 'https://canastappalpina.vercel.app/')">Control de Canastas <span class="link-icon">↗</span></a></td>
           <td class="problema-cell">Pérdidas de canastillas sin trazabilidad por ruta. Planillas físicas que se extraviaban en el muelle.</td>
           <td class="solucion-cell">Registro de despacho vs retorno por viaje, con firma digital y kardex en tiempo real.</td>
           <td class="impacto-cell">Trazabilidad completa de los 4 tipos de envase entre bodega, rutas y clientes.</td>
@@ -363,7 +571,7 @@
         </tr>
 
         <tr>
-          <td class="proceso-cell">Control de Inventarios (InventApp)</td>
+          <td class="proceso-cell"><a class="app-link" href="#" data-app="inventapp" data-url="https://invent-app-blond.vercel.app/" onclick="openAppFrame(event, 'InventApp', 'https://invent-app-blond.vercel.app/')">InventApp <span class="link-icon">↗</span></a></td>
           <td class="problema-cell">Conteos en hojas físicas con digitación manual posterior y discrepancias crónicas de stock.</td>
           <td class="solucion-cell">Conteos asignados por operario, diferencias automáticas y actas en PDF sin digitación.</td>
           <td class="impacto-cell">Precisión 88,2% → 99,4%. Toma física de 7 h reducida a 2 h.</td>
@@ -371,7 +579,7 @@
         </tr>
 
         <tr>
-          <td class="proceso-cell">Portal Tributario</td>
+          <td class="proceso-cell"><a class="app-link" href="#" data-app="portal_tributario" data-url="https://portaltributario.tiendasymarcaseje.com/" onclick="openAppFrame(event, 'Portal Tributario', 'https://portaltributario.tiendasymarcaseje.com/')">Portal Tributario <span class="link-icon">↗</span></a></td>
           <td class="problema-cell">Más de 600 solicitudes mensuales de certificados por correo y teléfono al área contable.</td>
           <td class="solucion-cell">Autoservicio 24/7: el usuario ingresa su NIT y descarga el certificado en segundos.</td>
           <td class="impacto-cell">Cero llamadas y correos para entrega de certificados.</td>
@@ -379,7 +587,7 @@
         </tr>
 
         <tr>
-          <td class="proceso-cell">Gestión Humana (GH PRO)</td>
+          <td class="proceso-cell"><a class="app-link" href="#" data-app="app_gh" data-url="https://ghprotym.vercel.app/" onclick="openAppFrame(event, 'GH PRO', 'https://ghprotym.vercel.app/')">GH PRO <span class="link-icon">↗</span></a></td>
           <td class="problema-cell">Asistencia en libros físicos, vacaciones en papel, sin control de dotación ni visibilidad de horas extras.</td>
           <td class="solucion-cell">QR de asistencia, portal de vacaciones, módulo de dotación y seguimiento de horas extras.</td>
           <td class="impacto-cell">Todo en un solo lugar: asistencia, vacaciones, dotación, horas extras, incapacidades y certificados.</td>
@@ -387,7 +595,7 @@
         </tr>
 
         <tr>
-          <td class="proceso-cell">Indicadores de Gestión (AppIndicadores)</td>
+          <td class="proceso-cell"><a class="app-link" href="#" data-app="app_indicadores" data-url="https://zentra.tiendasymarcaseje.com/" onclick="openAppFrame(event, 'AppIndicadores', 'https://zentra.tiendasymarcaseje.com/')">AppIndicadores <span class="link-icon">↗</span></a></td>
           <td class="problema-cell">Seguimiento verbal o en hojas sueltas, sin trazabilidad ni histórico de cumplimiento.</td>
           <td class="solucion-cell">Dashboard de cumplimiento de tareas por colaborador, área y período en tiempo real.</td>
           <td class="impacto-cell">Los líderes identifican quién cumple y quién no con datos concretos y actualizados.</td>
@@ -395,7 +603,7 @@
         </tr>
 
         <tr>
-          <td class="proceso-cell">Análisis Comercial Alpina (Zeentra)</td>
+          <td class="proceso-cell"><a class="app-link" href="#" data-app="zentra_alpina" data-url="https://zentra-alpina.vercel.app/" onclick="openAppFrame(event, 'Zeentra Alpina', 'https://zentra-alpina.vercel.app/')">Zeentra Alpina <span class="link-icon">↗</span></a></td>
           <td class="problema-cell">Múltiples archivos Excel desactualizados y sin consolidar. El cubo de ventas colapsaba los equipos.</td>
           <td class="solucion-cell">Dashboard único con toda la información comercial y asistente de IA para consultas.</td>
           <td class="impacto-cell">Análisis de días reducido a minutos. Desvíos detectados el mismo día.</td>
@@ -403,7 +611,7 @@
         </tr>
 
         <tr>
-          <td class="proceso-cell">Gestión de Cambios Zenú (ZenUp)</td>
+          <td class="proceso-cell"><a class="app-link" href="#" data-app="cambios_zenu" data-url="https://zen-up-psi.vercel.app/" onclick="openAppFrame(event, 'ZenUp (Cambios Zenú)', 'https://zen-up-psi.vercel.app/')">ZenUp (Cambios Zenú) <span class="link-icon">↗</span></a></td>
           <td class="problema-cell">Talonarios físicos con precios desactualizados y errores en equivalencias de productos.</td>
           <td class="solucion-cell">Catálogo digital con precios automáticos y cálculo exacto de cambios en tiempo real.</td>
           <td class="impacto-cell">Visita de 12 min → 3 min. Efectividad de cobro 81,5% → 99,8%.</td>
@@ -411,7 +619,7 @@
         </tr>
 
         <tr>
-          <td class="proceso-cell">Portal Web Corporativo (TYM / TAT)</td>
+          <td class="proceso-cell"><a class="app-link" href="#" data-app="web_tm_tat" data-url="https://www.tiendasymarcaseje.com/" onclick="openAppFrame(event, 'WEB-T-M-TAT', 'https://www.tiendasymarcaseje.com/')">WEB-T-M-TAT <span class="link-icon">↗</span></a></td>
           <td class="problema-cell">Sin presencia digital. Consultas de catálogo atendidas manualmente por teléfono.</td>
           <td class="solucion-cell">Portal con catálogo multimarca y asistente de IA que responde consultas automáticamente.</td>
           <td class="impacto-cell">85% de consultas resueltas sin intervención. Captación de clientes +140%.</td>
@@ -420,6 +628,37 @@
 
       </tbody>
     </table>
+  </div>
+
+  <!-- ── App Frame Modal ── -->
+  <div id="appFrameOverlay" class="frame-overlay" onclick="closeAppFrame(event)">
+    <div class="frame-modal">
+      <div class="frame-topbar">
+        <div class="frame-topbar-left">
+          <div class="frame-dots">
+            <span class="dot dot-red"></span>
+            <span class="dot dot-yellow"></span>
+            <span class="dot dot-green"></span>
+          </div>
+          <span class="frame-app-name" id="frameAppName">App</span>
+        </div>
+        <div class="frame-topbar-right">
+          <div class="frame-status">
+            <span class="frame-live-dot"></span>
+            <span>En Producción</span>
+          </div>
+          <button class="frame-close-btn" onclick="closeAppFrame(null)" title="Cerrar">✕</button>
+        </div>
+      </div>
+      <div class="frame-body">
+        <div class="frame-loader" id="frameLoader">
+          <div class="loader-spinner"></div>
+          <span>Cargando aplicación…</span>
+        </div>
+        <iframe id="appIframe" class="app-iframe" src="" frameborder="0" allowfullscreen
+          onload="document.getElementById('frameLoader').style.display='none'"></iframe>
+      </div>
+    </div>
   </div>
 
   <!-- ── Footer ── -->
@@ -434,5 +673,38 @@
     <span>Desarrollado a la medida para Tiendas y Marcas del Eje Cafetero &amp; TAT Distribuciones</span>
   </div>
 
+  <script>
+    function openAppFrame(event, appName, url) {
+      event.preventDefault();
+      const overlay  = document.getElementById('appFrameOverlay');
+      const iframe   = document.getElementById('appIframe');
+      const nameEl   = document.getElementById('frameAppName');
+      const loader   = document.getElementById('frameLoader');
+
+      nameEl.textContent   = appName;
+      loader.style.display = 'flex';
+      iframe.src           = url;
+
+      overlay.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeAppFrame(event) {
+      // Si vino de click en el overlay, solo cierra si el click fue en el fondo
+      if (event && event.target !== document.getElementById('appFrameOverlay')) return;
+
+      const overlay = document.getElementById('appFrameOverlay');
+      const iframe  = document.getElementById('appIframe');
+
+      overlay.classList.remove('active');
+      iframe.src = '';
+      document.body.style.overflow = '';
+    }
+
+    // Cerrar con Escape
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') closeAppFrame(null);
+    });
+  </script>
 </body>
 </html>

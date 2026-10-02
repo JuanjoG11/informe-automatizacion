@@ -857,6 +857,96 @@ body {
   font-size: 0.82rem;
   font-weight: 700;
   color: var(--text-accent);
+  cursor: pointer;
+}
+
+/* Footer de tarjeta con ficha técnica + botón abrir app */
+.app-card-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.6rem;
+  padding-top: 0.85rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.app-card-footer .app-card-action {
+  border-top: none;
+  padding-top: 0;
+  flex: 1;
+}
+
+/* Botón "Abrir App" en tarjeta */
+.btn-open-app {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.38rem 0.85rem;
+  border-radius: 50px;
+  font-size: 0.78rem;
+  font-weight: 700;
+  text-decoration: none;
+  white-space: nowrap;
+  background: linear-gradient(135deg, #0ea5e9, #6366f1);
+  color: #fff;
+  box-shadow: 0 0 12px rgba(99, 102, 241, 0.35);
+  transition: transform 0.18s ease, box-shadow 0.18s ease, opacity 0.18s ease;
+  letter-spacing: 0.01em;
+}
+
+.btn-open-app:hover {
+  transform: translateY(-2px) scale(1.04);
+  box-shadow: 0 0 22px rgba(99, 102, 241, 0.6);
+  opacity: 0.92;
+}
+
+/* Nombre de app como link */
+.app-name-link {
+  color: inherit;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  transition: color 0.18s ease;
+}
+
+.app-name-link:hover {
+  color: #38bdf8;
+}
+
+/* Botón "Abrir App" grande en modal header */
+.btn-launch-app {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.5rem 1.1rem;
+  border-radius: 50px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-decoration: none;
+  background: linear-gradient(135deg, #0ea5e9, #6366f1);
+  color: #fff;
+  box-shadow: 0 0 18px rgba(99, 102, 241, 0.4);
+  transition: transform 0.18s ease, box-shadow 0.18s ease;
+  white-space: nowrap;
+}
+
+.btn-launch-app:hover {
+  transform: translateY(-2px) scale(1.04);
+  box-shadow: 0 0 28px rgba(99, 102, 241, 0.65);
+}
+
+/* Link del nombre en el modal */
+.modal-app-link {
+  color: inherit;
+  text-decoration: none;
+  transition: color 0.18s ease;
+}
+
+.modal-app-link:hover {
+  color: #38bdf8;
+  text-decoration: underline;
+  text-decoration-color: rgba(56, 189, 248, 0.4);
 }
 
 .action-arrow {
@@ -984,7 +1074,7 @@ body {
   padding: 1.8rem 2rem 1.2rem 2rem;
   border-bottom: 1px solid var(--border-color);
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   justify-content: space-between;
   position: sticky;
   top: 0;

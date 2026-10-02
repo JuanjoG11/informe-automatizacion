@@ -187,7 +187,12 @@ function renderAppCards() {
           <span class="app-category-badge">${app.categoryLabel}</span>
         </div>
 
-        <h3 class="app-name-title">${app.name}</h3>
+        <h3 class="app-name-title">
+          ${app.appUrl
+            ? `<a class="app-name-link" href="${app.appUrl}" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation()" title="Abrir ${app.name}">${app.name} <i data-lucide="external-link" style="width:13px;height:13px;vertical-align:middle;opacity:0.7;"></i></a>`
+            : app.name
+          }
+        </h3>
         <div class="app-sub-title">${app.title}</div>
         <p class="app-desc-summary">${app.summary}</p>
       </div>
@@ -209,9 +214,16 @@ function renderAppCards() {
           ${app.techStack.length > 3 ? `<span class="tech-tag">+${app.techStack.length - 3}</span>` : ''}
         </div>
 
-        <div class="app-card-action">
-          <span>Ver Ficha Técnica y Métricas</span>
-          <i data-lucide="arrow-right" class="action-arrow"></i>
+        <div class="app-card-footer">
+          <div class="app-card-action" onclick="openAppModal('${app.id}'); event.stopPropagation()">
+            <span>Ver Ficha Técnica</span>
+            <i data-lucide="arrow-right" class="action-arrow"></i>
+          </div>
+          ${app.appUrl ? `
+          <a class="btn-open-app" href="${app.appUrl}" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation()" title="Abrir ${app.name} en nueva pestaña">
+            <i data-lucide="rocket" style="width:13px;height:13px;"></i>
+            <span>Abrir App</span>
+          </a>` : ''}
         </div>
       </div>
     </div>
@@ -237,13 +249,25 @@ function openAppModal(appId) {
         </div>
         <div>
           <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.2rem;">
-            <h2 class="modal-name">${app.name}</h2>
+            <h2 class="modal-name">
+              ${app.appUrl
+                ? `<a class="modal-app-link" href="${app.appUrl}" target="_blank" rel="noopener noreferrer" title="Abrir ${app.name}">${app.name}</a>`
+                : app.name
+              }
+            </h2>
             <span class="modal-folder-badge">📁 Documents/${app.folder}</span>
           </div>
           <p style="color: var(--text-secondary); font-size: 0.9rem;">${app.title}</p>
         </div>
       </div>
-      <button class="btn-close-modal" onclick="closeAppModal()"><i data-lucide="x"></i></button>
+      <div style="display: flex; align-items: center; gap: 0.75rem;">
+        ${app.appUrl ? `
+        <a class="btn-launch-app" href="${app.appUrl}" target="_blank" rel="noopener noreferrer" title="Abrir aplicación en producción">
+          <i data-lucide="rocket" style="width:15px;height:15px;"></i>
+          <span>Abrir App</span>
+        </a>` : ''}
+        <button class="btn-close-modal" onclick="closeAppModal()"><i data-lucide="x"></i></button>
+      </div>
     </div>
 
     <div class="modal-tabs-bar">
