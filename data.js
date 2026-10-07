@@ -209,7 +209,7 @@ const APPS_DATA = [
     reportData: {
       problema: "Conteos físicos en hojas impresas con posterior digitación manual. Paradas innecesarias de la operación y discrepancias crónicas entre el sistema y el stock físico real.",
       solucion: "Aplicación offline-first para conteos cíclicos con asignación de tareas por operario, cálculo automático de diferencias y generación de actas en PDF.",
-      impacto: "Reducción del tiempo de toma física de 7 a 2 horas, eliminación de digitación manual y precisión de inventario que pasa de 88,2% a 99,4%.",
+      impacto: "Eliminación total de la digitación manual post-conteo, cero pérdida de planillas físicas y detección inmediata de faltantes por producto sin esperar al cierre del día.",
       ahorro: "Eliminación de 4 horas de digitación por conteo y reducción de paradas operativas. Ahorro estimado en tiempo de nómina y mermas no detectadas: $32.000.000 anuales."
     },
     title: "Conteo y Auditoría de Inventarios Cíclicos en Tiempo Real",
@@ -244,9 +244,9 @@ const APPS_DATA = [
 
     techStack: ["Vanilla JS PWA", "Service Workers", "Supabase", "jsPDF", "AutoTable", "IndexedDB"],
     kpis: [
-      { label: "Tiempo de Toma Física", value: "2 horas", prev: "7 horas", change: "-71%" },
-      { label: "Tiempo de Digitación", value: "0 seg", prev: "4 horas", change: "-100%" },
-      { label: "Precisión de Inventario", value: "99.4%", prev: "88.2%", change: "+12.7%" }
+      { label: "Digitación Manual Post-Conteo", value: "0 horas", prev: "3-4 horas", change: "-100%" },
+      { label: "Pérdida de Planillas Físicas", value: "0 incidentes", prev: "Frecuente", change: "-100%" },
+      { label: "Detección de Faltantes", value: "En el momento", prev: "Al día siguiente", change: "-99%" }
     ],
     architecture: "Asignación de Tareas -> PWA Conteo Offline -> Sincronización Automática -> Comparación de Stock -> Generación de Actas PDF"
   },
