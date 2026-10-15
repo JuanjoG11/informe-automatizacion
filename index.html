@@ -629,7 +629,7 @@
         </tr>
 
         <tr>
-          <td class="proceso-cell"><a class="app-link" href="#" data-app="web_tm_tat" data-url="/proxy?url=https://www.tiendasymarcaseje.com" onclick="openAppFrame(event, 'Página Web Principal', '/proxy?url=https://www.tiendasymarcaseje.com')">Página Web Principal <span class="link-icon">↗</span></a></td>
+          <td class="proceso-cell"><a class="app-link" href="https://www.tiendasymarcaseje.com" target="_blank" rel="noopener noreferrer" onclick="handleWebPrincipal(event)">Página Web Principal <span class="link-icon">↗</span></a></td>
           <td class="problema-cell">Sin presencia digital. Consultas de catálogo atendidas manualmente por teléfono.</td>
           <td class="solucion-cell">Portal con catálogo multimarca y asistente de IA que responde consultas automáticamente.</td>
           <td class="impacto-cell">La empresa aparece en primera posición en Google al buscar su nombre. Mayor visibilidad orgánica sin pauta publicitaria.</td>
@@ -684,6 +684,15 @@
   </div>
 
   <script>
+    function handleWebPrincipal(event) {
+      // Si estamos en local (localhost), usar el proxy con iframe
+      if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
+        event.preventDefault();
+        openAppFrame(event, 'Página Web Principal', '/proxy?url=https://www.tiendasymarcaseje.com');
+      }
+      // Si estamos en Vercel u otro host, el href abre en nueva pestaña (comportamiento por defecto)
+    }
+
     function openAppFrame(event, appName, url) {
       event.preventDefault();
       const overlay  = document.getElementById('appFrameOverlay');
